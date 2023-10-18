@@ -87,8 +87,6 @@ def main():
     checkpoint = torch.load(args.model_path, map_location=torch.device("cpu"))
     net = get_model(args).cuda()
     net.load_state_dict(checkpoint['state_dict'])
-    # print(net)
-    # sys.exit()
     print('-------- MODEL INFORMATION --------')
     print('---- arch.: '+args.arch)
     print('---- saved path: '+args.model_path)
@@ -123,13 +121,12 @@ def val(net, in_loader, out_loader, args):
         print("Processing out-of-distribution data...")
         out_scores = iterate_data_energy(out_loader, net, args.temperature_energy)
     elif args.score == 'ODIN':
-        # is_ImgNet = True if args.in_data == 'ImageNet' else False
         if args.in_data == 'ImageNet':
             args.epsilon_odin = 0.0
         print("Processing in-distribution data...")
-        in_scores = iterate_data_odin(in_loader, net, args.epsilon_odin, args.temperature_odin) #, is_ImgNet)
+        in_scores = iterate_data_odin(in_loader, net, args.epsilon_odin, args.temperature_odin)
         print("Processing out-of-distribution data...")
-        out_scores = iterate_data_odin(out_loader, net, args.epsilon_odin, args.temperature_odin) #, is_ImgNet)
+        out_scores = iterate_data_odin(out_loader, net, args.epsilon_odin, args.temperature_odin)
     elif args.score == 'RankFeat':
         print("Processing in-distribution data...")
         in_scores = iterate_data_rankfeat(in_loader, net, args)
@@ -137,9 +134,9 @@ def val(net, in_loader, out_loader, args):
         out_scores = iterate_data_rankfeat(out_loader, net, args)
     elif args.score == 'GradNorm':
         print("Processing in-distribution data...")
-        in_scores = iterate_data_gradnorm(in_loader, net, args) # args.temperature_gradnorm, args.num_classes)
+        in_scores = iterate_data_gradnorm(in_loader, net, args)
         print("Processing out-of-distribution data...")
-        out_scores = iterate_data_gradnorm(out_loader, net, args) # args.temperature_gradnorm, args.num_classes)
+        out_scores = iterate_data_gradnorm(out_loader, net, args)
     elif args.score == 'Mahalanobis':
         hyperparam=os.path.split(os.path.split(args.model_path)[-2])[-1]
         sample_mean, precision, lr_weights, lr_bias, magnitude = np.load(
@@ -183,21 +180,6 @@ def val(net, in_loader, out_loader, args):
     print('AUPR (Out): {}'.format(aupr_out))
     print('FPR95: {}'.format(fpr95))
 
-    # with torch.no_grad():
-        
-    #     # -------- compute the accs.
-    #     for test in dataloader:
-    #         images, labels = test
-    #         images, labels = images.cuda(), labels.cuda()
-
-    #         # ------- forward 
-    #         logits = net(images).detach().float()
-    #         prec1 = accuracy(logits.data, labels)[0]
-    #         acc.update(prec1.item(), images.size(0))
-            
-
-    # print('     Validation costs %fs.'%(batch_time.sum))        
-    # return acc
     return
 
 

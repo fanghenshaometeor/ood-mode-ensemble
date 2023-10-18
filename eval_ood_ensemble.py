@@ -140,9 +140,9 @@ def val_ensemble(net_ensemble, in_loader, out_loader, args):
         out_scores = iterate_data_rankfeat_ensemble(out_loader, net_ensemble, args)
     elif args.score == 'GradNorm':
         print("Processing in-distribution data...")
-        in_scores = iterate_data_gradnorm_ensemble(in_loader, net_ensemble, args) # .temperature_gradnorm, args.num_classes)
+        in_scores = iterate_data_gradnorm_ensemble(in_loader, net_ensemble, args)
         print("Processing out-of-distribution data...")
-        out_scores = iterate_data_gradnorm_ensemble(out_loader, net_ensemble, args) # .temperature_gradnorm, args.num_classes)
+        out_scores = iterate_data_gradnorm_ensemble(out_loader, net_ensemble, args)
     elif args.score == 'Mahalanobis':
         hyperparam = ''
         for idx, PATH in enumerate(args.model_path):
@@ -191,22 +191,7 @@ def val_ensemble(net_ensemble, in_loader, out_loader, args):
     print('AUPR (In): {}'.format(aupr_in))
     print('AUPR (Out): {}'.format(aupr_out))
     print('FPR95: {}'.format(fpr95))
-
-    # with torch.no_grad():
-        
-    #     # -------- compute the accs.
-    #     for test in dataloader:
-    #         images, labels = test
-    #         images, labels = images.cuda(), labels.cuda()
-
-    #         # ------- forward 
-    #         logits = net(images).detach().float()
-    #         prec1 = accuracy(logits.data, labels)[0]
-    #         acc.update(prec1.item(), images.size(0))
-            
-
-    # print('     Validation costs %fs.'%(batch_time.sum))        
-    # return acc
+    
     return
 
 

@@ -195,15 +195,13 @@ def iterate_data_energy_ensemble(data_loader, model_ensemble, temper):
     return np.array(confs)
 
 # ======== ODIN Score
-def iterate_data_odin(data_loader, model, epsilon, temper): #, is_ImgNet):
+def iterate_data_odin(data_loader, model, epsilon, temper):
     criterion = torch.nn.CrossEntropyLoss().cuda()
     confs = []
     for b, (x, y) in enumerate(data_loader):
         x = Variable(x.cuda(), requires_grad=True)
         outputs = model(x)
 
-        # if the ind data is imagenet, we dot not perturb the input
-        # if not is_ImgNet:
         maxIndexTemp = np.argmax(outputs.data.cpu().numpy(), axis=1)
         outputs = outputs / temper
 
@@ -279,10 +277,6 @@ def iterate_data_mahalanobis(data_loader, model, num_classes, sample_mean, preci
         x = x.cuda()
 
         Mahalanobis_scores = get_Mahalanobis_score(x, model, num_classes, sample_mean, precision, num_output, magnitude)
-        # print("Mahal_scores.shape: ", Mahalanobis_scores.shape)
-        # print("num_output: ", num_output)
-        # print("regressor.n_features: ", regressor.n_features_in_)
-        # print("regressor.coef_", regressor.coef_.shape)
         scores = -regressor.predict_proba(Mahalanobis_scores)[:, 1]
         confs.extend(scores)
     return np.array(confs)
@@ -296,10 +290,6 @@ def iterate_data_mahalanobis_ensemble(data_loader, model_ensemble, num_classes, 
         x = x.cuda()
 
         Mahalanobis_scores = get_Mahalanobis_score_ensemble(x, model_ensemble, num_classes, sample_mean, precision, num_output, magnitude)
-        # print("Mahal_scores.shape: ", Mahalanobis_scores.shape)
-        # print("num_output: ", num_output)
-        # print("regressor.n_features: ", regressor.n_features_in_)
-        # print("regressor.coef_", regressor.coef_.shape)
         scores = -regressor.predict_proba(Mahalanobis_scores)[:, 1]
         confs.extend(scores)
     return np.array(confs)
