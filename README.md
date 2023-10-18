@@ -12,8 +12,8 @@ A description on the files contained in this repo.
 1. `train_c10.py`: training isolated modes w.r.t. different random seeds on CIFAR10
 
 ### Evaluation
-1. `eval_clean.py` and `eval_clean_ensemble.py`: evaluation the clean accracy of single modes and independent modes
-2. `eval_ood.py` and `eval_ood_ensemble.py`: evaluation the OoD detection performance of single modes and independent modes
+1. `eval_clean.py` and `eval_clean_ensemble.py`: evaluation the clean accracy of single modes and ensembling modes
+2. `eval_ood.py` and `eval_ood_ensemble.py`: evaluation the OoD detection performance of single modes and ensembling modes
 
 ### Others
 1. `utils_ood.py`: A collection on the utility functions of OoD detectors
