@@ -10,10 +10,11 @@ A description on the files contained in this repo.
 
 ### Training
 1. `train_c10.py`: training isolated modes w.r.t. different random seeds on CIFAR10
+2. `train_imgnet.py`: training isolated modes w.r.t. different random seeds on ImageNet
 
 ### Evaluation
-1. `eval_clean.py` and `eval_clean_ensemble.py`: evaluation the clean accracy of single modes and ensembling modes
-2. `eval_ood.py` and `eval_ood_ensemble.py`: evaluation the OoD detection performance of single modes and ensembling modes
+1. `eval_clean.py` and `eval_clean_ensemble.py`: evaluation the clean accracy of single modes and ensembling modes, respectively
+2. `eval_ood.py` and `eval_ood_ensemble.py`: evaluation the OoD detection performance of single modes and ensembling modes, respectively
 
 ### Others
 1. `utils_ood.py`: A collection on the utility functions of OoD detectors
@@ -37,6 +38,28 @@ Modify the in-distribution and out-distribution data directory in `utils_ood.py`
 ## Examples
 
 ## Released trained-models
+
+Our trained models including R18-C10, WRN28X10-C10, R50-ImgNet, DN121-ImgNet and T2T-ViT-14-ImgNet are released [here](https://drive.google.com/drive/folders/123fa0dEG-t0qyLjIEgevCyoSvGFQ0iyt?usp=sharing).
+
+Download these modes and put them in `./save/` as follows
+```
+ood-mode-ensemble
+├── model
+├── utils_knn
+├── utils_mahalanobis
+├── save
+|   ├── CIFAR10
+|   └── ImageNet
+|       ├── DN121
+|       |   ├── seed-1000
+|       |   |   └──checkpoint.pth.tar
+|       |   ├── seed-2000
+|       |   ├── ...
+|       |   └── seed-5000
+|       ├── R50
+|       └── t2tvit 
+├── ...
+```
 
 ## References
 The loss landscape visualization techniques follow [mode-connectivity](https://github.com/timgaripov/dnn-mode-connectivity) and [loss-surface](https://github.com/tomgoldstein/loss-landscape).
