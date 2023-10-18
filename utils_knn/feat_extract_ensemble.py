@@ -14,9 +14,6 @@ from utils import setup_seed
 from utils import get_model
 from utils import Logger
 from utils_data import make_id_ood
-# from util.args_loader import get_args
-# from util.data_loader import get_loader_in, get_loader_out
-# from util.model_loader import get_model
 import numpy as np
 import torch.nn.functional as F
 import time

@@ -20,7 +20,6 @@ def make_id_ood(args):
         if args.out_data == 'SVHN':
             args.out_datadir = '~/fangkun/data/ood_data/svhn/'
             out_set = tv.datasets.SVHN(args.out_datadir, split='test', transform=test_transform, download=False)
-        # elif args.out_data == 'LSUN' or args.out_data == 'iSUN' or args.out_data == 'places365':
         elif args.out_data in ['LSUN','iSUN','places365','LSUN_FIX','ImageNet_FIX','ImageNet_resize']:
             args.out_datadir = '~/fangkun/data/ood_data/{}'.format(args.out_data)
             out_set = tv.datasets.ImageFolder(args.out_datadir, transform=test_transform)
