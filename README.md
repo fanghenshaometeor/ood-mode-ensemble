@@ -39,9 +39,9 @@ Modify the in-distribution and out-distribution data directory in `utils_ood.py`
 
 ## Released trained-models
 
-Our trained models including R18-C10, WRN28X10-C10, R50-ImgNet, DN121-ImgNet and T2T-ViT-14-ImgNet are released [here](https://drive.google.com/drive/folders/123fa0dEG-t0qyLjIEgevCyoSvGFQ0iyt?usp=sharing).
+Our models trained w.r.t. different random seeds, including R18-C10, WRN28X10-C10, R50-ImgNet, DN121-ImgNet and T2T-ViT-14-ImgNet are released [here](https://drive.google.com/drive/folders/123fa0dEG-t0qyLjIEgevCyoSvGFQ0iyt?usp=sharing).
 
-Download these modes and put them in `./save/` as follows
+Download these models and put them in `./save/` as follows
 ```
 ood-mode-ensemble
 ├── model
