@@ -10,7 +10,7 @@ Our work is summarized as follows:
 
 <a href="pics/mode-loss-landscape-ood.png"><div align="center"><img src="pics/mode-loss-landscape-ood.png"></div></a>
 
-An example on the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/2022/file/71c9eb0913e6c7fda3afd69c914b1a0c-Paper-Conference.pdf) detector on 5 independent modes (DN121-ImageNet), to show the high FPR variances across modes and the improved performance of mode ensemble:
+The following table appears as an example to show the high FPR variances across modes and the improved performance of mode ensemble, where the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/2022/file/71c9eb0913e6c7fda3afd69c914b1a0c-Paper-Conference.pdf) detector is executed on 5 independent modes (DN121-ImageNet).
 
 modes    | iNaturalist | SUN     | Places  | Texture
 :-:      | :-:         | :-:     | :-:     | :-:
@@ -21,7 +21,7 @@ mode-4   | $\underline{84.70}$     | 69.57   | 76.45   | $\underline{49.89}$
 mode-5   | $\underline{46.58}$     | 44.46   | 58.95   | $\underline{22.48}$
 ensemble | **39.32**   | 39.48   | 55.61   | **15.98**
 
-## Overview of the Repo
+## Overview of this repository
 
 A description on the files contained in this repo.
 
@@ -64,6 +64,12 @@ ood-mode-ensemble
 ├── utils_mahalanobis
 ├── save
 |   ├── CIFAR10
+|   |   ├── R18
+|   |   └── WRN28X10
+|   |       ├── seed-1000
+|   |       |   └── epoch150.pth
+|   |       ├── ...
+|   |       └── seed-2400
 |   └── ImageNet
 |       ├── DN121
 |       |   ├── seed-1000
