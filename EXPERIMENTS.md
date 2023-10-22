@@ -6,7 +6,7 @@ All the commands to reproduce the reported results in our paper are listed below
 
 ### CIFAR10
 
-To train isolated modes on CIFAR10, run the following BASH command
+To train isolated modes of R18 and WRN28X10 on CIFAR10, run the following BASH command
 ```
 for seed in 1000 1100 1200 1300 1400 2000 2100 2200 2300 2400
 do
@@ -21,7 +21,7 @@ done
 
 ### ImageNet
 
-To train isolated modes on ImageNet, run the following BASH command
+To train isolated modes of R50 and DN121 on ImageNet, run the following BASH command
 ```
 for seed in 1000 2000 3000 4000 5000
 do
@@ -172,11 +172,190 @@ CUDA_VISIBLE_DEVICES=0 python eval_ood_ensemble.py \
  --in_data ImageNet --out_data ${out_data} \
  --model_path "./save/ImageNet/${arch}/seed-1000/checkpoint.pth.tar" \
  "./save/ImageNet/${arch}/seed-3000/checkpoint.pth.tar" \
- "./save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar" \
+ "./save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar"
 done
 done
 ```
 
 ## Evaluation on the kNN detector
 
+Please change the in-distribution and out-distribution data directories in `./utils_knn/utils_data.py` as yours.
+
+### kNN on single modes
+
+To evaluate the kNN detector on single modes, the steps are:
+1. Feature extraction
+```
+cd utils_knn
+for seed in 1000 1100 1200 1300 1400 2000 2100 2200 2300 2400
+do
+for arch in R18 WRN28X10
+do
+for out_data in SVHN LSUN iSUN Texture places365
+do
+CUDA_VISIBLE_DEVICES=0 python feat_extract.py \
+ --arch ${arch} --in_data CIFAR10 --out_data ${out_data} \
+ --model_path "../save/CIFAR10/${arch}/seed-${seed}/epoch150.pth" \
+done
+done
+done
+```
+
+2. Perform nearest neighbor search
+```
+for seed in 1000 1100 1200 1300 1400 2000 2100 2200 2300 2400 
+do
+for arch in R18 WRN28X10
+do
+CUDA_VISIBLE_DEVICES=0 python knn.py \
+ --arch ${arch} --in_data CIFAR10 --train_seed ${seed} \
+ --out_datasets SVHN LSUN iSUN Texture places365
+done
+done
+```
+
+### kNN on mode ensemble
+
+For ensembling multiple modes, the steps of kNN are:
+1. Feature extraction
+```
+for arch in R18 WRN28X10
+do
+for out_data in SVHN LSUN iSUN Texture places365
+do
+CUDA_VISIBLE_DEVICES=0 python feat_extract_ensemble.py \
+ --arch ${arch} --in_data CIFAR10 --out_data ${out_data} \
+ --model_path "./save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-2000/epoch150.pth"
+done
+done
+```
+
+2. Perform nearest neighbor search
+```
+for arch in R18 WRN28X10
+do
+CUDA_VISIBLE_DEVICES=0 python knn_ensemble.py \
+ --arch ${arch} --in_data CIFAR10 --train_seed 1000 1200 2000
+done
+```
+
 ## Evaluation on the Mahalanobis detector
+
+### Mahalanobis on single modes
+
+To evaluate the Mahalanobis detector on single modes, the steps are:
+1. Tuning hyper-parameters
+```
+cd utils_mahalanobis
+for seed in 1000 1100 1200 1300 1400 2000 2100 2200 2300 2400
+do
+for arch in R18 WRN28X10 
+do
+CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter.py \
+ --dataset CIFAR10 --data_dir YOUR_CIFAR10_DIR \
+ --arch ${arch} --model_path "../save/CIFAR10/${arch}/seed-${seed}/epoch150.pth"
+done
+done
+```
+```
+cd utils_mahalanobis
+for seed in 1000 2000 3000 4000 5000
+do
+for arch in R50 DN121
+do
+CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter.py \
+ --dataset ImageNet --data_dir YOUR_IMAGENET_DIR \
+ --arch ${arch} --model_path "../save/ImageNet/${arch}/seed-${seed}/checkpoint.pth.tar" --batch_size 64 # 128 # 512
+done
+done
+```
+
+2. Run Mahalanobis detector
+```
+for seed in 1000 1100 1200 1300 1400 2000 2100 2200 2300 2400
+do
+for arch in R18 WRN28X10
+do
+for out_data in SVHN LSUN iSUN Texture places365
+do
+CUDA_VISIBLE_DEVICES=0 python eval_ood.py \
+ --arch ${arch} --score Mahalanobis \
+ --in_data CIFAR10 --out_data ${out_data} \
+ --model_path "./save/CIFAR10/${arch}/seed-${seed}/epoch150.pth"
+done
+done
+done
+```
+```
+for seed in 1000 2000 3000 4000 5000
+do
+for arch in R50 DN121
+do
+for out_data in iNaturalist SUN Places Texture
+do
+CUDA_VISIBLE_DEVICES=1 python eval_ood.py \
+ --arch ${arch} --score Mahalanobis \
+ --in_data ImageNet --out_data ${out_data} --batch_size 64 \
+ --model_path "./save/ImageNet/${arch}/seed-${seed}/checkpoint.pth.tar"
+done
+done
+done
+```
+
+### Mahalanobis on mode ensemble
+
+To evaluate the Mahalanobis detector on ensembling modes, the steps are:
+1. Tuning hyper-parameters
+```
+cd utils_mahalanobis
+for arch in R18 WRN28X10
+do
+CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter_ensemble.py \
+ --arch ${arch} --dataset CIFAR10 --data_dir YOUR_CIFAR10_DIR --batch_size 32 \
+ --model_path "./save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-2000/epoch150.pth"
+done
+```
+```
+cd utils_mahalanobis
+for arch in R50 DN121
+do
+CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter_ensemble.py \
+ --arch ${arch} --dataset ImageNet --data_dir YOUR_IMAGENET_DIR --batch_size 512 \
+ --model_path "./save/ImageNet/${arch}/seed-1000/checkpoint.pth.tar" \
+ "./save/ImageNet/${arch}/seed-3000/checkpoint.pth.tar" \
+ "./save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar"
+done
+```
+
+2. Run Mahalanobis detector
+```
+for arch in R18 WRN28X10
+do
+for out_data in SVHN LSUN iSUN Texture places365
+do
+CUDA_VISIBLE_DEVICES=0 python eval_ood_ensemble.py \
+ --arch ${arch} --score Mahalanobis --in_data CIFAR10 --out_data ${out_data} \
+ --model_path "./save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
+ "./save/CIFAR10/${arch}/seed-2000/epoch150.pth"
+done
+done
+```
+```
+for arch in R50 DN121
+do
+for out_data in iNaturalist SUN Places Texture
+do
+CUDA_VISIBLE_DEVICES=1 python eval_ood_ensemble.py \
+ --arch ${arch} --score Mahalanobis \
+ --in_data ImageNet --out_data ${out_data} --batch_size 16 \
+ --model_path "./save/ImageNet/${arch}/seed-1000/checkpoint.pth.tar" \
+ "./save/ImageNet/${arch}/seed-3000/checkpoint.pth.tar" \
+ "./save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar"
+done
+done
+```
