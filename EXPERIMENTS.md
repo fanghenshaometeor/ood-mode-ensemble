@@ -2,7 +2,7 @@
 
 All the commands to reproduce the reported results in our paper are listed below.
 
-## Training
+## Training isolated modes on CIFAR10 and ImageNet
 
 ### CIFAR10
 
@@ -78,7 +78,7 @@ done
 
 You should prepare all the common OoD data sets and remember to modify the in-distribution and out-distribution data directories in `./utils_ood.py` as yours.
 
-### single modes
+### Detection performance of single modes
 
 To evaluate the OoD detection performance of independent modes, run the following BASH commands
 
@@ -143,7 +143,7 @@ done
 done
 ```
 
-### mode ensemble
+### Detection performance of mode ensemble
 
 We give an example on how to run the `eval_ood_ensemble.py` on ensembling 3 modes.
 
