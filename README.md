@@ -4,11 +4,22 @@ Mode ensemble for OoD detection. **UPDATING...**
 
 ## Introduction
 Our work is summarized as follows:
-- Models trained independently w.r.t. different random seeds converge to **isolated modes**
+- Models trained independently w.r.t. different random seeds converge to **isolated modes**.
 - These independent modes, which all reach low-loss regions with in-distribution data, yet yield significantly different loss landscapes with out-distribution data, which further suggests **significantly fluctuating OoD detection performance across independent modes** and has long been ignored by the research community.
 - Motivated by such diversities on OoD loss landscape across modes, we revisit the deep ensemble method for OoD detection through **mode ensemble**, and design corresponding ensemble strategies for different types of OoD detectors, leading to improved performance and benefiting the OoD detector with reduced variances.
 
 <a href="pics/mode-loss-landscape-ood.png"><div align="center"><img src="pics/mode-loss-landscape-ood.png"></div></a>
+
+An example on the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/2022/file/71c9eb0913e6c7fda3afd69c914b1a0c-Paper-Conference.pdf) detector on 5 independent modes (DN121-ImageNet) to show the high variances (FPR values) and advantages of mode ensemble:
+
+modes    | iNaturalist | SUN     | Places  | Texture
+:-:      | :-:         | :-:     | :-:     | :-:
+mode-1   | 66.01       | $75.53$ | $79.95$ | 43.60
+mode-2   | 58.49       | $34.70$ | $50.70$ | 32.73
+mode-3   | 59.53       | 50.07   | 63.27   | 40.64
+mode-4   | $84.70$     | 69.57   | 76.45   | $49.89$
+mode-5   | $46.58$     | 44.46   | 58.95   | $22.48$
+ensemble | **39.32**   | 39.48   | 55.61   | **15.98**
 
 ## Overview of the Repo
 
@@ -38,8 +49,6 @@ pip install pandas, scipy, scikit-learn, tensorboard
 pip install statsmodels
 ```
 Install [faiss](https://github.com/facebookresearch/faiss/tree/main) package following its [docs](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md).
-
-Modify the in-distribution and out-distribution data directories in `./utils_ood.py` as yours.
 
 A full collection of all the training and evaluation commands can be found in [EXPERIMENTS.md](./EXPERIMENTS.md).
 
