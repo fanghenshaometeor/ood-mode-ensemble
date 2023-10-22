@@ -33,9 +33,9 @@ pip install statsmodels
 ```
 Install [faiss](https://github.com/facebookresearch/faiss/tree/main) package following its [docs](https://github.com/facebookresearch/faiss/blob/main/INSTALL.md).
 
-Modify the in-distribution and out-distribution data directory in `utils_ood.py` as yours.
+Modify the in-distribution and out-distribution data directories in `./utils_ood.py` as yours.
 
-## Examples
+A full collection of all the training and evaluation commands can be found in [EXPERIMENTS.md](./EXPERIMENTS.md).
 
 ## Released trained-models
 
@@ -63,3 +63,9 @@ ood-mode-ensemble
 
 ## References
 The loss landscape visualization techniques follow [mode-connectivity](https://github.com/timgaripov/dnn-mode-connectivity) and [loss-surface](https://github.com/tomgoldstein/loss-landscape).
+
+## 
+
+If u have problems about the code or paper, u could contact me (fanghenshao@sjtu.edu.cn) or raise issues here.
+
+If u find the code useful, welcome to fork and star ⭐ this repo and cite our paper! :)
