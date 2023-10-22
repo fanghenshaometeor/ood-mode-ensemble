@@ -14,11 +14,11 @@ An example on the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/20
 
 modes    | iNaturalist | SUN     | Places  | Texture
 :-:      | :-:         | :-:     | :-:     | :-:
-mode-1   | 66.01       | $75.53$ | $79.95$ | 43.60
-mode-2   | 58.49       | $34.70$ | $50.70$ | 32.73
+mode-1   | 66.01       | $\underline{75.53}$ | $\underline{79.95}$ | 43.60
+mode-2   | 58.49       | $\underline{34.70}$ | $\underline{50.70}$ | 32.73
 mode-3   | 59.53       | 50.07   | 63.27   | 40.64
-mode-4   | $84.70$     | 69.57   | 76.45   | $49.89$
-mode-5   | $46.58$     | 44.46   | 58.95   | $22.48$
+mode-4   | $\underline{84.70}$     | 69.57   | 76.45   | $\underline{49.89}$
+mode-5   | $\underline{46.58}$     | 44.46   | 58.95   | $\underline{22.48}$
 ensemble | **39.32**   | 39.48   | 55.61   | **15.98**
 
 ## Overview of the Repo
@@ -83,4 +83,4 @@ The loss landscape visualization techniques follow [mode-connectivity](https://g
 
 If u have problems about the code or paper, u could contact me (fanghenshao@sjtu.edu.cn) or raise issues here.
 
-If u find the code useful, welcome to fork and star ⭐ this repo and cite our paper! :)
+If the code benefit ur researches, welcome to fork and star ⭐ this repo. and cite our paper! :)
