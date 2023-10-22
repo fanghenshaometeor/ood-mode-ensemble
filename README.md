@@ -83,4 +83,4 @@ The loss landscape visualization techniques follow [mode-connectivity](https://g
 
 If u have problems about the code or paper, u could contact me (fanghenshao@sjtu.edu.cn) or raise issues here.
 
-If the code benefit ur researches, welcome to fork and star ⭐ this repo. and cite our paper! :)
+If the code benefits ur researches, welcome to fork and star ⭐ this repo and cite our paper! :)
