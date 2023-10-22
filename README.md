@@ -10,7 +10,7 @@ Our work is summarized as follows:
 
 <a href="pics/mode-loss-landscape-ood.png"><div align="center"><img src="pics/mode-loss-landscape-ood.png"></div></a>
 
-An example on the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/2022/file/71c9eb0913e6c7fda3afd69c914b1a0c-Paper-Conference.pdf) detector on 5 independent modes (DN121-ImageNet) to show the high variances (FPR values) and advantages of mode ensemble:
+An example on the [RankFeat](https://proceedings.neurips.cc/paper_files/paper/2022/file/71c9eb0913e6c7fda3afd69c914b1a0c-Paper-Conference.pdf) detector on 5 independent modes (DN121-ImageNet), to show the high FPR variances across modes and the improved performance of mode ensemble:
 
 modes    | iNaturalist | SUN     | Places  | Texture
 :-:      | :-:         | :-:     | :-:     | :-:
