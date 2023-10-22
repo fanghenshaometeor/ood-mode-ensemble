@@ -2,7 +2,13 @@
 Mode ensemble for OoD detection. **UPDATING...**
 
 
-## Mode ensemble for OoD detection in a nutshell
+## Introduction
+Our work is summarized as follows:
+- Models trained independently w.r.t. different random seeds converge to **isolated modes**
+- These independent modes, which all reach low-loss regions with in-distribution data, yet yield significantly different loss landscapes with out-distribution data, which further suggests **significantly fluctuating OoD detection performance across independent modes** and has long been ignored by the research community.
+- Motivated by such diversities on OoD loss landscape across modes, we revisit the deep ensemble method for OoD detection through **mode ensemble**, and design corresponding ensemble strategies for different types of OoD detectors, leading to improved performance and benefiting the OoD detector with reduced variances.
+
+<a href="pics/mode-loss-landscape-ood.png"><div align="center"><img src="pics/mode-loss-landscape-ood.png"></div></a>
 
 ## Overview of the Repo
 
