@@ -23,7 +23,7 @@ ensemble | **39.32**   | 39.48   | 55.61   | **15.98**
 
 ## Overview of this repository
 
-A description on the files contained in this repo.
+A description on the files contained in this repository.
 
 ### Training
 1. `train_c10.py`: training isolated modes w.r.t. different random seeds on CIFAR10
@@ -54,7 +54,7 @@ A full collection of all the training and evaluation commands can be found in [E
 
 ## Released trained-models
 
-Our models trained w.r.t. different random seeds, including R18-C10, WRN28X10-C10, R50-ImgNet, DN121-ImgNet and T2T-ViT-14-ImgNet are released [here](https://drive.google.com/drive/folders/123fa0dEG-t0qyLjIEgevCyoSvGFQ0iyt?usp=sharing).
+Our models trained w.r.t. different random seeds, including R18-C10, WRN28X10-C10, R50-ImgNet, DN121-ImgNet and T2T-ViT-14-ImgNet, are released [here](https://drive.google.com/drive/folders/123fa0dEG-t0qyLjIEgevCyoSvGFQ0iyt?usp=sharing).
 
 Download these models and put them in `./save/` as follows
 ```
@@ -82,7 +82,7 @@ ood-mode-ensemble
 ├── ...
 ```
 
-## References
+## Additional references
 The loss landscape visualization techniques follow [mode-connectivity](https://github.com/timgaripov/dnn-mode-connectivity) and [loss-surface](https://github.com/tomgoldstein/loss-landscape).
 
 ## 
