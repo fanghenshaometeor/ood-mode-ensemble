@@ -1,5 +1,19 @@
 # ood-mode-ensemble
-Mode ensemble for OoD detection. **UPDATING...**
+
+PyTorch implementation of the paper [*Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective*](https://arxiv.org/abs/2010.12190).
+
+If our work is helpful for your research, please consider citing:
+
+```
+@misc{fang2023revisiting,
+      title={Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective}, 
+      author={Kun Fang and Qinghua Tao and Xiaolin Huang and Jie Yang},
+      year={2023},
+      eprint={2310.14227},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
 
 ## Introduction
