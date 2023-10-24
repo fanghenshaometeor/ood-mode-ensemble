@@ -1,6 +1,6 @@
 # ood-mode-ensemble
 
-PyTorch implementation of the paper [*Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective*](https://arxiv.org/abs/2010.12190).
+PyTorch implementation of the paper [*Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective*](https://arxiv.org/abs/2310.14227).
 
 If our work is helpful for your research, please consider citing:
 
