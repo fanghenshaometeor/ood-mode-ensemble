@@ -4,6 +4,21 @@ All the commands to reproduce the reported results in our paper are listed below
 
 ## Training isolated modes on CIFAR10 and ImageNet
 
+### Random seed
+
+The key to control isolated converged modes is the random seed during training, as the random seed dominates the DNN initialization and the noise in SGD optimization, and leads to a specific training trajectory.
+
+
+The corresponding function in code is
+```
+def setup_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+```
+
 ### CIFAR10
 
 To train isolated modes of **R18** and **WRN28X10** on CIFAR10, run the following BASH command
