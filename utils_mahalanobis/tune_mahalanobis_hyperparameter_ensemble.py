@@ -44,10 +44,12 @@ def tune_mahalanobis_hyperparams_ensemble(args, model_ensemble, num_classes, tra
     # set information about feature extaction
     if args.in_data == 'CIFAR10':
         temp_x = torch.randn(2, 3, 32, 32)
+        temp_x = Variable(temp_x).cuda()
+        temp_list = model.feature_list(temp_x)[1]
     elif args.in_data == 'ImageNet':
         temp_x = torch.rand(2, 3, 224, 224)
-    temp_x = Variable(temp_x).cuda()
-    temp_list = model.feature_list(temp_x)[1]
+        temp_x = Variable(temp_x).cuda()
+        temp_list = model.module.feature_list(temp_x)[1]
     num_output = len(temp_list)
     feature_list = np.empty(num_output)
     count = 0
@@ -284,6 +286,7 @@ def main(args):
     # train_set, val_set, train_loader, val_loader = mktrainval(args)
 
     train_loader, val_loader = get_datasets(args)
+    args.in_data = args.dataset
 
     # print(f"Loading model from {args.model_path}")
     #model = resnetv2.KNOWN_MODELS[args.model](head_size=len(train_set.classes))
