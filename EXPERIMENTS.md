@@ -242,9 +242,9 @@ for out_data in SVHN LSUN iSUN Texture places365
 do
 CUDA_VISIBLE_DEVICES=0 python feat_extract_ensemble.py \
  --arch ${arch} --in_data CIFAR10 --out_data ${out_data} \
- --model_path "./save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
- "./save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
- "./save/CIFAR10/${arch}/seed-2000/epoch150.pth"
+ --model_path "../save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
+ "../save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
+ "../save/CIFAR10/${arch}/seed-2000/epoch150.pth"
 done
 done
 ```
@@ -332,9 +332,9 @@ for arch in R18 WRN28X10
 do
 CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter_ensemble.py \
  --arch ${arch} --dataset CIFAR10 --data_dir YOUR_CIFAR10_DIR --batch_size 32 \
- --model_path "./save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
- "./save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
- "./save/CIFAR10/${arch}/seed-2000/epoch150.pth"
+ --model_path "../save/CIFAR10/${arch}/seed-1000/epoch150.pth" \
+ "../save/CIFAR10/${arch}/seed-1200/epoch150.pth" \
+ "../save/CIFAR10/${arch}/seed-2000/epoch150.pth"
 done
 ```
 ```
@@ -343,9 +343,9 @@ for arch in R50 DN121
 do
 CUDA_VISIBLE_DEVICES=0 python tune_mahalanobis_hyperparameter_ensemble.py \
  --arch ${arch} --dataset ImageNet --data_dir YOUR_IMAGENET_DIR --batch_size 512 \
- --model_path "./save/ImageNet/${arch}/seed-1000/checkpoint.pth.tar" \
- "./save/ImageNet/${arch}/seed-3000/checkpoint.pth.tar" \
- "./save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar"
+ --model_path "../save/ImageNet/${arch}/seed-1000/checkpoint.pth.tar" \
+ "../save/ImageNet/${arch}/seed-3000/checkpoint.pth.tar" \
+ "../save/ImageNet/${arch}/seed-5000/checkpoint.pth.tar"
 done
 ```
 
