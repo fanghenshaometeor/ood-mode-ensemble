@@ -1,17 +1,23 @@
 # ood-mode-ensemble
 
-PyTorch implementation of the paper *Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective*. [journal](https://doi.org/10.1007/s11263-024-02156-x), [arxiv](https://arxiv.org/abs/2310.14227).
+PyTorch implementation of the IJCV paper *Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective*. [journal](https://doi.org/10.1007/s11263-024-02156-x), [arxiv](https://arxiv.org/abs/2310.14227).
 
-If our work is helpful for your research, please consider citing:
+If our work is helpful for your research, welcome to cite our paper!
 
 ```
-@article{Fang2024,
-author={Fang, Kun and Tao, Qinghua and Huang, Xiaolin and Yang, Jie},
+﻿@Article{Fang2024,
+author={Fang, Kun
+and Tao, Qinghua
+and Huang, Xiaolin
+and Yang, Jie},
 title={Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective},
 journal={International Journal of Computer Vision},
 year={2024},
-month={Jul},
-day={15},
+month={Dec},
+day={01},
+volume={132},
+number={12},
+pages={6107-6126},
 issn={1573-1405},
 doi={10.1007/s11263-024-02156-x},
 url={https://doi.org/10.1007/s11263-024-02156-x}
@@ -110,4 +116,4 @@ The loss landscape visualization techniques follow [mode-connectivity](https://g
 
 If u have problems about the code or paper, u could contact me (fanghenshao@sjtu.edu.cn) or raise issues here.
 
-If the code benefits ur researches, welcome to fork and star ⭐ this repo and cite our paper! :)
+If the code benefits ur researches, welcome to fork and star ⭐ this repo! :)
