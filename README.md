@@ -6,10 +6,7 @@ If our work is helpful for your research, welcome to cite our paper!
 
 ```
 ﻿@Article{Fang2024,
-author={Fang, Kun
-and Tao, Qinghua
-and Huang, Xiaolin
-and Yang, Jie},
+author={Fang, Kun and Tao, Qinghua and Huang, Xiaolin and Yang, Jie},
 title={Revisiting Deep Ensemble for Out-of-Distribution Detection: A Loss Landscape Perspective},
 journal={International Journal of Computer Vision},
 year={2024},
